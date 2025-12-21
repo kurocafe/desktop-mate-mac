@@ -11,7 +11,9 @@ import SwiftUI
 struct DesktopMateMacApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharacterView()
         }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
     }
 }
