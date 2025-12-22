@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CharacterView: View {
     var body: some View {
+//        Z軸方向に重ねるコンテナ（奥から手前に重ねる）
         ZStack {
             // 透明背景（確認用に一時的に半透明の色を使う）
             Color.blue.opacity(0.3)
