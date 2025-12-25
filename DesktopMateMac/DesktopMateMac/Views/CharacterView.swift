@@ -59,9 +59,11 @@ struct CharacterView: View {
         )
 //        ドラッグ中は少し透明に
         .opacity(isDragging ? 0.8 : 1.0)
+//        ビューが表示されたらアニメーション開始
         .onAppear{
             startAnimation()
         }
+//        ビューが消えたらアニメーション停止
         .onDisappear{
             stopAnimation()
         }
