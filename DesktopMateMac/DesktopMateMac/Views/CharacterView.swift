@@ -6,19 +6,32 @@ struct CharacterView: View {
 //    ドラッグ中かどうか
     @State private var isDragging = false
     
+//    アニメーション用
+    @State private var animationState = AnimationState()
+    @State private var animationTimer: Timer?
+    
+//    画像ファイル名リスト
+    private let idleFrames = ["idle_01", "idle_02", "idle_03"]
+    
+//    現在の画像名
+    private var currentImageName: String {
+        idleFrames[animationState.currentFrame]
+    }
+    
     var body: some View {
 //        Z軸方向に重ねるコンテナ（奥から手前に重ねる）
         ZStack {
 //            ウィンドウアクセサリー
             WindowAccessor(window: $window)
             
-            // 透明背景（確認用に一時的に半透明の色を使う）
-            Color.blue.opacity(0.3)
+            // 透明背景
+            Color.clear
             
-            // テキスト表示（後で画像に置き換える）
-            Text("Desktop Mate")
-                .foregroundColor(.white)
-                .font(.title)
+            // アニメーションする画像
+            Image(currentImageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
         }
         .frame(width: 200, height: 200)
         .contentShape(Rectangle())
@@ -46,6 +59,30 @@ struct CharacterView: View {
         )
 //        ドラッグ中は少し透明に
         .opacity(isDragging ? 0.8 : 1.0)
+        .onAppear{
+            startAnimation()
+        }
+        .onDisappear{
+            stopAnimation()
+        }
+    }
+    
+//    アニメーション開始
+    private func startAnimation() {
+        let interval = 1.0 / animationState.fps
+        
+        animationTimer = Timer.scheduledTimer(
+            withTimeInterval: interval,
+            repeats: true
+        ) { _ in
+            animationState.nextFrame()
+        }
+    }
+    
+//    アニメーション停止
+    private func stopAnimation() {
+        animationTimer?.invalidate()
+        animationTimer = nil
     }
 }
 
