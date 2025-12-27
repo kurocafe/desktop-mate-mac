@@ -31,9 +31,9 @@ struct CharacterView: View {
             Image(currentImageName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 200, height: 200)
+                .frame(width: 400, height: 400)
         }
-        .frame(width: 200, height: 200)
+        .frame(width: 400, height: 400)
         .contentShape(Rectangle())
         .gesture(
             DragGesture()
