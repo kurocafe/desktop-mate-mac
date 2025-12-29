@@ -1,3 +1,5 @@
+// AppKitは古く、SwiftUIは新しいUI
+// 透明ウィンドウはAppKit, キャラクター表示はSwiftUI
 import SwiftUI
 import AppKit
 
