@@ -83,8 +83,8 @@ class MovementController: ObservableObject {
     
 //    待機タイマー開始
     func scheduleNextMovement(completion: @escaping () -> Void) {
-//        30秒〜120秒のランダムな待機時間
-        let waitTime = Double.random(in: 30...120)
+//        30秒〜60秒のランダムな待機時間
+        let waitTime = Double.random(in: 30...60)
         print("\(Int(waitTime))秒後に移動開始")
         
         waitTimer = Timer.scheduledTimer(withTimeInterval: waitTime, repeats: false) { _ in
